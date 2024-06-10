@@ -21,6 +21,11 @@ builder.Services.AddHttpClient("textOnlyGemini", (serviceProvider, httpClient) =
     //httpClient.DefaultRequestHeaders.Add("accept", textOnlyGemini.ContentType);
     httpClient.BaseAddress = new Uri(builder.Configuration["Gemini:BaseAddress"]) ;
 });
+builder.Services.AddHttpClient("textAndImageGemini", (serviceProvider, httpClient) => {
+    var textOnlyGemini = serviceProvider.GetRequiredService<IOptionsMonitor<GeminiOptions>>().Get(GeminiOptions.TextAndImage);
+    //httpClient.DefaultRequestHeaders.Add("accept", textOnlyGemini.ContentType);
+    httpClient.BaseAddress = new Uri(builder.Configuration["Gemini:BaseAddress"]);
+});
 
 var app = builder.Build();
 
