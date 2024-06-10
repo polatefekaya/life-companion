@@ -67,7 +67,7 @@ namespace LifeCompanion.API.Controllers.v1 {
         }
         [HttpPost]
         public async Task<IActionResult> TestImage(string message, IFormFile file) {
-            HttpClient client = _httpClientFactory.CreateClient("textOnlyGemini");
+            HttpClient client = _httpClientFactory.CreateClient("textAndImageGemini");
             string requestUri = $"{_textOnlyGemini.ApiVersion}/models/{_textOnlyGemini.Model}:{_textOnlyGemini.RequestType}?key={_configuration["ApiKeys:Gemini"]}";
 
             HttpRequestMessage requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUri);
